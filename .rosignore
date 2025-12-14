@@ -1,0 +1,40 @@
+# ROS build artifacts
+build/
+devel/
+install/
+log/
+
+# Source artifacts
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg-info/
+.eggs/
+
+# Environment
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ROS-specific ignore patterns
+*.dae
+*.stl
+*.obj
+*.urdf
+*.xacro
+*.launch
+*.yaml

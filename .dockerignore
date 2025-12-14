@@ -1,0 +1,70 @@
+# Dependencies
+node_modules
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+
+# Environment
+.env
+.env.local
+.env.dev
+.env.production
+.env.staging
+.env.*.local
+.env.*.development
+.env.*.production
+.env.*.staging
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docusaurus
+.docusaurus/
+.generated/
+
+# ROS
+build/
+devel/
+install/
+log/
+
+# Simulation
+Library/
+[Oo]bj/
+[Bb]uild/
+[Ll]ocal[Cc]ache/
+[Tt]emp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker build context
+.git
+.gitignore
+README.md
+Dockerfile*
+.dockerignore

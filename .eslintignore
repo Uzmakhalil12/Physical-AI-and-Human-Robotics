@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# Production build
+build/
+
+# Environment variables
+.env*
+
+# Coverage
+coverage/
+
+# Logs
+*.log
+
+# Docusaurus generated files
+.docusaurus/
+.generated/
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
