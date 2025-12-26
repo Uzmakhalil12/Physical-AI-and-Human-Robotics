@@ -21,3 +21,15 @@
   align-items: center;
   justify-content: center;
 }
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--ifm-color-emphasis-700);
+}
