@@ -11,10 +11,10 @@ const config = {
     v4: true,
   },
 
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://physical-ai-and-human-robotics.vercel.app',
   baseUrl: '/',
 
-  organizationName: 'your-github-username',
+  organizationName: 'Uzmakhalil12',
   projectName: 'physical-ai-human-robotics-book',
 
   onBrokenLinks: 'throw',
@@ -68,7 +68,7 @@ const config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/your-github-username',
+          href: 'https://github.com/Uzmakhalil12/Physical-AI-and-Human-Robotics',
           label: 'GitHub',
           position: 'right',
         },
@@ -96,7 +96,7 @@ const config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/your-github-username',
+              href: 'https://github.com/Uzmakhalil12/Physical-AI-and-Human-Robotics',
             },
           ],
         },
