@@ -1,0 +1,89 @@
+# API Contract for Physical AI and Human Robotics RAG Chatbot
+
+## /api/chat/query
+
+### POST /api/chat/query
+
+Process a user query using RAG (Retrieval-Augmented Generation).
+
+#### Request
+```json
+{
+  "query": "string",
+  "session_id": "string (optional)"
+}
+```
+
+#### Response
+```json
+{
+  "response": "string",
+  "session_id": "string",
+  "context_used": ["string"],
+  "is_in_scope": "boolean"
+}
+```
+
+#### Error Responses
+- 400: Bad Request - Invalid input parameters
+- 429: Too Many Requests - Rate limit exceeded
+- 500: Internal Server Error - Processing error
+
+#### Headers
+- Content-Type: application/json
+- Authorization: Bearer {API_KEY} (if required)
+
+## /api/chat/session
+
+### GET /api/chat/session/{session_id}
+
+Retrieve the details of a specific chat session.
+
+#### Path Parameters
+- session_id: string - The unique identifier of the session
+
+#### Response
+```json
+{
+  "session_id": "string",
+  "messages": [
+    {
+      "message_id": "string",
+      "role": "string",
+      "content": "string",
+      "timestamp": "datetime",
+      "context_used": ["string"]
+    }
+  ],
+  "created_at": "datetime",
+  "updated_at": "datetime"
+}
+```
+
+### DELETE /api/chat/session/{session_id}
+
+Delete a specific chat session.
+
+#### Path Parameters
+- session_id: string - The unique identifier of the session
+
+#### Response
+```json
+{
+  "status": "deleted"
+}
+```
+
+#### Error Responses
+- 404: Not Found - Session does not exist
+- 500: Internal Server Error - Processing error
+
+## Error Response Format
+
+All error responses follow this format:
+```json
+{
+  "error": "string",
+  "details": "string (optional)"
+}
+```

@@ -1,55 +1,62 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Physical AI and Human Robotics RAG Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Domain Scope Adherence
+All responses must be related to Physical AI & Human Robotics. Any out-of-scope questions must be replied with: "This question is outside the scope of Physical AI and Human Robotics. Please ask a relevant question." This ensures the chatbot maintains its specialized expertise and doesn't provide potentially inaccurate information on unrelated topics.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Accuracy Over Guessing
+The chatbot must not hallucinate answers. All responses must be generated using retrieval-augmented generation (RAG) from the embedded knowledge base. This principle ensures factual accuracy and prevents the spread of misinformation.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Technology Stack Standardization
+Backend: FastAPI for API endpoints. Frontend: React for chatbot interface. Embeddings: Cohere embed-english-v3.0. Generation: Cohere command-r. Vector DB: Qdrant free tier. This standardizes the technology stack for maintainability and optimal performance.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Knowledge Source Integrity
+All chatbot answers must come exclusively from the knowledge base. The system must implement proper RAG retrieval logic to ensure responses are grounded in the provided data. This maintains consistency and reliability.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Error Handling and User Experience
+The system must provide graceful error handling for API failures, network issues, and invalid inputs. User experience must remain smooth even during partial system failures, with appropriate fallback messages.
 
-### [PRINCIPLE_6_NAME]
+### VI. Performance and Efficiency
+API endpoints must respond within reasonable timeframes (under 5 seconds for typical queries). The system should efficiently manage resources and implement proper caching where appropriate to optimize performance.
 
+## Technical Requirements
 
-[PRINCIPLE__DESCRIPTION]
+### Backend Architecture
+- FastAPI application with proper routing for chat endpoints
+- Environment variable configuration for API keys and service URLs
+- Proper error handling and logging
+- Input validation and sanitization
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Frontend Integration
+- React component for chat interface
+- Real-time message display
+- Loading states and error handling
+- Responsive design for various screen sizes
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Data Management
+- Q&A dataset preparation for embedding
+- Vector database integration with Qdrant
+- Proper indexing and search capabilities
+- Data backup and recovery procedures
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Code Quality Standards
+- Type hints for all function signatures
+- Comprehensive error handling
+- Proper documentation for all public interfaces
+- Unit tests for critical functionality
+- Code follows PEP 8 standards for Python and standard React patterns
+
+### Review Process
+- All code changes must pass automated tests
+- Peer review required for all pull requests
+- Performance testing for API endpoints
+- Security review for any new dependencies
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+The constitution governs all development practices for this project. All changes to this constitution require explicit approval and must be documented with rationale. All PRs and reviews must verify compliance with these principles. Use this constitution as the primary guidance for development decisions.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-28 | **Last Amended**: 2025-12-28

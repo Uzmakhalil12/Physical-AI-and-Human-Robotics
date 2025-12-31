@@ -1,4 +1,4 @@
-import cohere
+from openai import OpenAI
 from typing import List, Dict
 import os
 from dotenv import load_dotenv
@@ -10,11 +10,16 @@ load_dotenv()
 
 class RAGService:
     def __init__(self):
-        api_key = os.getenv("COHERE_API_KEY")
+        api_key = os.getenv("OPENROUTER_API_KEY")
         if not api_key:
-            raise ValueError("COHERE_API_KEY environment variable is required")
+            raise ValueError("OPENROUTER_API_KEY environment variable is required")
 
-        self.cohere_client = cohere.Client(api_key)
+        # OpenRouter uses OpenAI-compatible SDK
+        self.client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=api_key
+        )
+        self.model = os.getenv("OPENROUTER_MODEL", "google/gemini-2.0-flash-lite-preview-02-05:free")
         self.embedding_service = EmbeddingService()
         self.vector_db_service = VectorDBService()
 
@@ -54,28 +59,21 @@ class RAGService:
         # Combine context and generate response
         context = "\n\n".join(context_texts)
 
-        # Prepare the prompt for Cohere
-        prompt = f"""
-        Based on the following context from the Physical AI and Human Robotics knowledge base, please answer the user's question.
+        # Prepare the system message/prompt
+        system_prompt = f"Based on the following context from the Physical AI and Human Robotics knowledge base, please answer the user's question.\n\nContext:\n{context}\n\nPlease provide a helpful and accurate answer based on the context provided. If the context doesn't contain the information needed to answer the question, please say so."
 
-        Context:
-        {context}
-
-        User question: {user_query}
-
-        Please provide a helpful and accurate answer based on the context provided. If the context doesn't contain the information needed to answer the question, please say so.
-        """
-
-        # Generate response using Cohere Chat API with current model
-        response = self.cohere_client.chat(
-            model="command-r-plus-08-2024",
-            message=user_query,
-            preamble=f"Based on the following context from the Physical AI and Human Robotics knowledge base, please answer the user's question.\n\nContext:\n{context}\n\nPlease provide a helpful and accurate answer based on the context provided. If the context doesn't contain the information needed to answer the question, please say so.",
+        # Generate response using OpenAI-compatible Chat Completion API via OpenRouter
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_query}
+            ],
             max_tokens=500,
             temperature=0.3,
         )
 
-        generated_text = response.text.strip()
+        generated_text = response.choices[0].message.content.strip()
 
         return {
             "response": generated_text,
@@ -88,8 +86,6 @@ class RAGService:
         """
         Check if a query is within the Physical AI & Human Robotics domain
         """
-        # This is a simple keyword-based check; in a production system,
-        # you might want to use more sophisticated NLP techniques
         query_lower = query.lower()
 
         # Keywords that indicate the query is in scope
@@ -107,7 +103,4 @@ class RAGService:
             if keyword in query_lower:
                 return True
 
-        # Additional check: if the query seems to be about robotics or AI concepts
-        # but doesn't explicitly contain the keywords, we might want to be more permissive
-        # For now, we'll use a simple approach - if it's not clearly in scope, it's out of scope
         return False
