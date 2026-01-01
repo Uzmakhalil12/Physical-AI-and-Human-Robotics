@@ -101,7 +101,7 @@ const config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Human Robotics. Author: Uzma Khalil. Built with 🤖 Claude.`,
     },
 
     prism: {
