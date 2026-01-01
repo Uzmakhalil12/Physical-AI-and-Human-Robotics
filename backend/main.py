@@ -20,10 +20,19 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Allow origins for production
+origins = [
+    "http://localhost:3000",
+    "https://physical-ai-human-robotics.vercel.app",
+    "https://physical-ai-and-human-robotics.vercel.app",
+    "https://physical-and-robotics.github.io",
+    "https://physical-ai-and-human-robotics-production.up.railway.app",
+]
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origins
+    allow_origins=origins if os.getenv("ENVIRONMENT") == "production" else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
