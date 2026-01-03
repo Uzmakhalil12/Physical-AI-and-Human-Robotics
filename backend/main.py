@@ -26,7 +26,7 @@ origins = [
     "https://physical-ai-human-robotics.vercel.app",
     "https://physical-ai-and-human-robotics.vercel.app",
     "https://physical-and-robotics.github.io",
-    "https://physical-ai-and-human-robotics-production.up.railway.app",
+    "https://physical-ai-and-human-robotics-production-87ab.up.railway.app",
 ]
 
 # Add CORS middleware
